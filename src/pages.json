@@ -1,0 +1,54 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^wd-(.*)": "wot-design-uni/components/wd-$1/wd-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/sweet-coupons/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "list": [
+      {
+        "text": "home",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "text": "sweet-coupons",
+        "pagePath": "pages/sweet-coupons/index"
+      },
+      {
+        "text": "mine",
+        "pagePath": "pages/mine/index"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "Sweet Coupons",
+    "navigationStyle": "custom"
+  },
+  "subPackages": []
+}
