@@ -3,6 +3,7 @@ const antfu = require('@antfu/eslint-config').default
 module.exports = antfu(
   {
     vue: true,
+    formatters: true,
     typescript: true,
     ignores: [
       '**/src/uni_modules',
