@@ -5,6 +5,7 @@ import Uni from '@dcloudio/vite-plugin-uni'
 import UniHelperComponents from '@uni-helper/vite-plugin-uni-components'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
+import UniHelperPages from '@uni-helper/vite-plugin-uni-pages'
 
 function VitePluginUniPolyfill(): Plugin {
   return {
@@ -25,6 +26,11 @@ export const TransitionGroup = {}
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    // https://github.com/uni-helper/vite-plugin-uni-pages
+    UniHelperPages({
+      dts: 'src/uni-pages.d.ts',
+    }),
+
     VitePluginUniPolyfill(),
 
     // https://github.com/uni-helper/vite-plugin-uni-components
