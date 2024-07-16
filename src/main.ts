@@ -5,6 +5,7 @@ import App from './App.vue'
 import { shareMixin } from './mixins'
 import store from './store'
 import 'uno.css'
+import '@unocss/reset/tailwind-compat.css'
 
 export function createApp() {
   const app = createSSRApp(App)
