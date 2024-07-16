@@ -2,14 +2,14 @@
 export const shareMixin = {
   onShareAppMessage() {
     return {
-      title: 'Sweet Coupons',
-      path: '/pages/home/index',
+      title: 'Starter Uniapp',
+      path: '/pages/index/index',
     }
   },
   onShareTimeline() {
     return {
-      title: 'Sweet Coupons',
-      path: '/pages/home/index',
+      title: 'Starter Uniapp',
+      path: '/pages/index/index',
     }
   },
 }

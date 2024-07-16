@@ -5,11 +5,11 @@
       "type": "home"
     },
     {
-      "path": "pages/mine/index",
+      "path": "pages/hot/index",
       "type": "page"
     },
     {
-      "path": "pages/sweet-coupons/index",
+      "path": "pages/mine/index",
       "type": "page"
     }
   ],

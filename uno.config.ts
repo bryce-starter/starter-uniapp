@@ -1,7 +1,12 @@
 import { defineConfig, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
-import { presetMini } from '@bryce-loskie/unocss-preset-mini'
+import { WHAutoComplete, presetMini, transformerWh } from '@bryce-loskie/unocss-preset-mini'
 
 export default defineConfig({
+  autocomplete: {
+    templates: [
+      WHAutoComplete,
+    ],
+  },
   presets: [
     presetMini(),
     presetIcons({
@@ -16,5 +21,6 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),
+    transformerWh,
   ],
 })

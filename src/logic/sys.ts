@@ -1,6 +1,6 @@
 export enum TabEnum {
   Home,
-  SweetCoupons,
+  Hot,
   Mine,
 }
 

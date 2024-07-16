@@ -5,7 +5,7 @@ onLaunch(() => {})
 <style>
 page {
   background-color: #f5f5f5;
-  color: #1D2129;
+  color: #1d2129;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;

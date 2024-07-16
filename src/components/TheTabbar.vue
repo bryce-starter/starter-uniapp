@@ -8,8 +8,8 @@ const handleChange = () => {
     case TabEnum.Home:
       uni.switchTab({ url: '/pages/index/index' })
       break
-    case TabEnum.SweetCoupons:
-      uni.switchTab({ url: '/pages/sweet-coupons/index' })
+    case TabEnum.Hot:
+      uni.switchTab({ url: '/pages/hot/index' })
       break
     case TabEnum.Mine:
       uni.switchTab({ url: '/pages/mine/index' })
@@ -28,7 +28,7 @@ const handleChange = () => {
     @change="handleChange"
   >
     <wd-tabbar-item title="Home" icon="home" :name="TabEnum.Home" />
-    <wd-tabbar-item title="Home" icon="cart" :name="TabEnum.SweetCoupons" />
+    <wd-tabbar-item title="Home" icon="cart" :name="TabEnum.Hot" />
     <wd-tabbar-item title="Mine" icon="user" :name="TabEnum.Mine" />
   </wd-tabbar>
 </template>
