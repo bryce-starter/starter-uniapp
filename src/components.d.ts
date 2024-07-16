@@ -10,5 +10,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     TheTabbar: typeof import('./components/TheTabbar.vue')['default']
+    WdBadge: typeof import('wot-design-uni/components/wd-badge/wd-badge.vue')['default']
+    WdIcon: typeof import('wot-design-uni/components/wd-icon/wd-icon.vue')['default']
+    WdTabbar: typeof import('wot-design-uni/components/wd-tabbar/wd-tabbar.vue')['default']
+    WdTabbarItem: typeof import('wot-design-uni/components/wd-tabbar-item/wd-tabbar-item.vue')['default']
   }
 }

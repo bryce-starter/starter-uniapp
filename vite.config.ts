@@ -3,6 +3,7 @@ import type { Plugin } from 'vite'
 import { defineConfig } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import UniHelperComponents from '@uni-helper/vite-plugin-uni-components'
+import { WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
 import UniHelperPages from '@uni-helper/vite-plugin-uni-pages'
@@ -37,6 +38,9 @@ export default defineConfig({
     UniHelperComponents({
       dts: 'src/components.d.ts',
       directoryAsNamespace: true,
+      resolvers: [
+        WotResolver(),
+      ],
     }),
 
     Uni({

@@ -9,13 +9,27 @@ export default defineUniPages({
     backgroundTextStyle: '@bgTxtStyle',
     navigationBarBackgroundColor: '#000000',
     navigationBarTextStyle: '@navTxtStyle',
-    navigationBarTitleText: 'Vitesse-Uni',
+    navigationBarTitleText: 'Starter UniApp',
     navigationStyle: 'custom',
   },
-  // tabBar: {
-  //   backgroundColor: "@tabBgColor",
-  //   borderStyle: "@tabBorderStyle",
-  //   color: "@tabFontColor",
-  //   selectedColor: "@tabSelectedColor",
-  // },
+  tabBar: {
+    backgroundColor: '@tabBgColor',
+    borderStyle: '@tabBorderStyle',
+    color: '@tabFontColor',
+    selectedColor: '@tabSelectedColor',
+    list: [
+      {
+        pagePath: 'pages/index/index',
+        text: '首页',
+      },
+      {
+        pagePath: 'pages/hot/index',
+        text: '热门',
+      },
+      {
+        pagePath: 'pages/mine/index',
+        text: '我的',
+      },
+    ],
+  },
 })

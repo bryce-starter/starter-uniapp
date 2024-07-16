@@ -9,5 +9,8 @@ page {
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+  box-sizing: border-box;
+
+  --wot-color-theme: #575be3;
 }
 </style>
