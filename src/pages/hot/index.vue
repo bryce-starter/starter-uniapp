@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+const tabbarHeightRef = ref(0)
 </script>
 
 <template>
   <main>
-    sweet
+    hot {{ tabbarHeightRef }}
 
-    <TheTabbar />
+    <TheTabbar v-model:height="tabbarHeightRef" />
   </main>
 </template>
