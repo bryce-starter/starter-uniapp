@@ -3,8 +3,6 @@ import { presetMini } from '@bryce-loskie/unocss-preset-mini'
 
 export default defineConfig({
   presets: [
-    presetMini({
-      useIcon: true,
-    }),
+    presetMini(),
   ],
 })
