@@ -1,28 +1,18 @@
 <script lang="ts" setup>
-import { useElementSize, useRouter } from '@bryce-loskie/use/uni'
+import { useRouter } from '@bryce-loskie/use/uni'
 import { isDef } from '@bryce-loskie/utils'
-import { useIntervalFn } from '@vueuse/core'
-import { TabEnum, activeTabRef } from '~/logic/sys'
+import { TabEnum, activeTabRef, useTabbar } from '~/logic/tabbar'
 
 const props = defineProps<{ height?: number }>()
 const emit = defineEmits(['update:height'])
 
 const heightModelRef = useVModel(props, 'height', emit)
 
-const { height: heightRef, refresh } = useElementSize('#the-tabbar')
+const { heightRef } = useTabbar()
 
 watchEffect(() => {
   heightModelRef.value = heightRef.value
 })
-
-const { pause } = useIntervalFn(async () => {
-  await refresh()
-  if (heightRef.value) {
-    pause()
-  }
-}, 1000 / 30, { immediateCallback: true })
-
-uni.hideTabBar()
 
 const HOME_ROUTE = '/pages/index/index'
 const HOT_ROUTE = '/pages/hot/index'
