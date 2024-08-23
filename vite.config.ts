@@ -86,6 +86,7 @@ export default defineConfig({
       ],
       dts: 'src/auto-imports.d.ts',
     }),
+
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     UnoCSS(),
