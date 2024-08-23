@@ -1,4 +1,4 @@
-import { defineConfig, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { defineConfig } from 'unocss'
 import { presetMini } from '@bryce-loskie/unocss-preset-mini'
 
 export default defineConfig({
@@ -6,9 +6,5 @@ export default defineConfig({
     presetMini({
       useIcon: true,
     }),
-  ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
   ],
 })
