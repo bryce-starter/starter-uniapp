@@ -74,6 +74,9 @@ importers:
       pinia:
         specifier: 2.0.36
         version: 2.0.36(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
+      ufo:
+        specifier: ^1.5.3
+        version: 1.5.3
       vue:
         specifier: ^3.4.38
         version: 3.4.38(typescript@5.5.4)

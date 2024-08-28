@@ -11,3 +11,8 @@
 
 <style>
 </style>
+
+<route lang="yaml">
+style:
+  enablePullDownRefresh: true
+</route>
