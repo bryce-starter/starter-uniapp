@@ -2,7 +2,10 @@
   "pages": [
     {
       "path": "pages/index/index",
-      "type": "home"
+      "type": "home",
+      "style": {
+        "enablePullDownRefresh": true
+      }
     },
     {
       "path": "pages/hot/index",
@@ -32,10 +35,6 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/hot/index",
-        "text": "热门"
       },
       {
         "pagePath": "pages/mine/index",

@@ -23,10 +23,6 @@ export default defineUniPages({
         text: '首页',
       },
       {
-        pagePath: 'pages/hot/index',
-        text: '热门',
-      },
-      {
         pagePath: 'pages/mine/index',
         text: '我的',
       },
