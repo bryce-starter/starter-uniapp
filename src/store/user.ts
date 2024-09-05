@@ -13,4 +13,7 @@ export const useUserStore = defineStore('user', {
       this.token = token
     },
   },
+  persist: {
+    enabled: true,
+  },
 })
