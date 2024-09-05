@@ -18,3 +18,8 @@ export const AppName = appname === 'app1' ? '爱心代码' : '恋爱情书表白
 export const VipPrice = 666
 
 export const VipInviteCount = 3
+
+export const ShareInfo = {
+  title: 'Uni app',
+  path: '/pages/index/index',
+}

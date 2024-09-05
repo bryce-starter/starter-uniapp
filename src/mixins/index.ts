@@ -1,15 +1,11 @@
+import { ShareInfo } from '~/constants'
+
 // 页面分享
 export const shareMixin = {
   onShareAppMessage() {
-    return {
-      title: 'Starter Uniapp',
-      path: '/pages/index/index',
-    }
+    return ShareInfo
   },
   onShareTimeline() {
-    return {
-      title: 'Starter Uniapp',
-      path: '/pages/index/index',
-    }
+    return ShareInfo
   },
 }
