@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
+import process from 'node:process'
 import type { Plugin } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import UniHelperComponents from '@uni-helper/vite-plugin-uni-components'
 import { WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
@@ -24,77 +25,100 @@ export const TransitionGroup = {}
   }
 }
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    // https://github.com/uni-helper/vite-plugin-uni-pages
-    UniHelperPages({
-      dts: 'src/uni-pages.d.ts',
-    }),
+function VitePluginTheme(options: { themeColor: string }): Plugin {
+  return {
+    name: 'vite-plugin-theme',
+    transform(code, id) {
+      if (!id.endsWith('App.vue'))
+        return
 
-    VitePluginUniPolyfill(),
-
-    // https://github.com/uni-helper/vite-plugin-uni-components
-    UniHelperComponents({
-      dts: 'src/components.d.ts',
-      directoryAsNamespace: true,
-      resolvers: [
-        WotResolver(),
-      ],
-    }),
-
-    Uni({
-      vueOptions: {
-        script: {
-          defineModel: true,
-          propsDestructure: true,
-        },
-      },
-    }),
-
-    // https://github.com/antfu/unplugin-auto-import
-    AutoImport({
-      imports: [
-        'pinia',
-        'vue',
-        'uni-app',
-        {
-          from: '@bryce-loskie/utils',
-          imports: [
-            'to',
-            'sleep',
-          ],
-        },
-        {
-          from: '@tanstack/vue-query',
-          imports: [
-            'useQuery',
-            'useMutation',
-          ],
-        },
-        {
-          from: '@vueuse/core',
-          imports: [
-            'useVModel',
-            'until',
-          ],
-        },
-      ],
-      dirs: [
-        'src/store',
-        'src/utils',
-      ],
-      dts: 'src/auto-imports.d.ts',
-    }),
-
-    // https://github.com/antfu/unocss
-    // see unocss.config.ts for config
-    UnoCSS(),
-  ],
-
-  resolve: {
-    alias: {
-      '~': resolve(__dirname, 'src'),
+      const { themeColor } = options
+      return code.replace('$themeColor', themeColor)
     },
-  },
+  }
+}
+
+const cwd = process.cwd()
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, cwd)
+
+  return {
+    plugins: [
+      VitePluginTheme({
+        themeColor: env.VITE_THEME_COLOR,
+      }),
+
+      // https://github.com/uni-helper/vite-plugin-uni-pages
+      UniHelperPages({
+        dts: 'src/uni-pages.d.ts',
+      }),
+
+      VitePluginUniPolyfill(),
+
+      // https://github.com/uni-helper/vite-plugin-uni-components
+      UniHelperComponents({
+        dts: 'src/components.d.ts',
+        directoryAsNamespace: true,
+        resolvers: [
+          WotResolver(),
+        ],
+      }),
+
+      Uni({
+        vueOptions: {
+          script: {
+            defineModel: true,
+            propsDestructure: true,
+          },
+        },
+      }),
+
+      // https://github.com/antfu/unplugin-auto-import
+      AutoImport({
+        imports: [
+          'pinia',
+          'vue',
+          'uni-app',
+          {
+            from: '@bryce-loskie/utils',
+            imports: [
+              'to',
+              'sleep',
+            ],
+          },
+          {
+            from: '@tanstack/vue-query',
+            imports: [
+              'useQuery',
+              'useMutation',
+            ],
+          },
+          {
+            from: '@vueuse/core',
+            imports: [
+              'useVModel',
+              'until',
+            ],
+          },
+        ],
+        dirs: [
+          'src/store',
+          'src/utils',
+        ],
+        dts: 'src/auto-imports.d.ts',
+      }),
+
+      // https://github.com/antfu/unocss
+      // see unocss.config.ts for config
+      UnoCSS(),
+    ],
+
+    resolve: {
+      alias: {
+        '~': resolve(__dirname, 'src'),
+      },
+    },
+  }
 })

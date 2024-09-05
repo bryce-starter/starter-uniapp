@@ -11,6 +11,6 @@ page {
   line-height: 22px;
   box-sizing: border-box;
 
-  --wot-color-theme: #575be3;
+  --wot-color-theme: $themeColor;
 }
 </style>
