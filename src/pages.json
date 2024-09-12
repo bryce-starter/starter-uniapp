@@ -4,7 +4,8 @@
       "path": "pages/index/index",
       "type": "home",
       "style": {
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 180
       }
     },
     {
@@ -13,6 +14,10 @@
     },
     {
       "path": "pages/mine/index",
+      "type": "page"
+    },
+    {
+      "path": "pages/mine/logger",
       "type": "page"
     }
   ],

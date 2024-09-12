@@ -23,6 +23,28 @@ export const useUserStore = defineStore('user', {
       this.token = undefined
       this.userInfo = undefined
     },
+    async refreshProfile() {
+      // TODO: 刷新用户信息
+    },
+  },
+  getters: {
+    nickname(state) {
+      return state.userInfo?.nickname
+    },
+    hasLoggedIn(state) {
+      return !!state.token
+    },
+    avatar(state) {
+      const avatarFilename = state.userInfo?.avatar
+      if (!avatarFilename)
+        return DefaultAvatarUrl
+
+      const httpPrefix = /^https?:\/\//i
+      if (httpPrefix.test(avatarFilename))
+        return avatarFilename
+      else
+        return BASE_URL + avatarFilename
+    },
   },
   persist: {
     enabled: true,

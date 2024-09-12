@@ -60,7 +60,6 @@ export default defineConfig(({ mode }) => {
       // https://github.com/uni-helper/vite-plugin-uni-components
       UniHelperComponents({
         dts: 'src/components.d.ts',
-        directoryAsNamespace: true,
         resolvers: [
           WotResolver(),
         ],
@@ -77,6 +76,7 @@ export default defineConfig(({ mode }) => {
 
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
+        vueTemplate: true,
         imports: [
           'pinia',
           'vue',
@@ -104,8 +104,10 @@ export default defineConfig(({ mode }) => {
           },
         ],
         dirs: [
+          'src/constants',
           'src/store',
           'src/utils',
+          'src/api',
         ],
         dts: 'src/auto-imports.d.ts',
       }),

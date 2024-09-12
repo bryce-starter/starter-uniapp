@@ -15,4 +15,5 @@
 <route lang="yaml">
 style:
   enablePullDownRefresh: true
+  onReachBottomDistance: 180
 </route>

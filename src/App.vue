@@ -1,5 +1,15 @@
 <script setup lang="ts">
-onLaunch(() => {})
+import { useLaunchLog } from './logic/log'
+import { checkForAppUpdate } from './utils/misc'
+
+useLaunchLog()
+
+const userStore = useUserStore()
+userStore.refreshProfile()
+
+// #ifdef MP-WEIXIN
+checkForAppUpdate()
+// #endif
 </script>
 
 <style>
@@ -12,5 +22,12 @@ page {
   box-sizing: border-box;
 
   --wot-color-theme: $themeColor;
+  --wot-navbar-title-font-weight: 400;
+  --wot-navbar-title-font-size: 16px;
+}
+
+.wd-upload__preview {
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>
