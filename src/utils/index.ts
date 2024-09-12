@@ -21,7 +21,9 @@ export const handleNavigateBack = () => {
 
   // #ifndef H5
   uni.navigateBack().catch(() => {
-    uni.redirectTo({ url: '/pages/index/index' })
+    uni.switchTab({
+      url: '/pages/index/index',
+    })
   })
   // #endif
 }
