@@ -52,12 +52,6 @@ export const http = <T = any>(options: UniApp.RequestOptions) => {
         const dataCode = data?.code
         const dataMsg = data?.msg === 'internal server error' ? '服务器开小差了，请稍后重试' : data?.msg
 
-        const isTokenExpired = dataCode === 1001
-        if (isTokenExpired) {
-          await handleTokenExpired()
-          return reject(res)
-        }
-
         // 状态码 2xx， axios 就是这样设计的
         if (statusCode >= 200 && statusCode < 300 && dataCode === 0)
           return resolve(data)

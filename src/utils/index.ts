@@ -4,13 +4,12 @@ import numeral from 'numeral'
 
 export const validateForm = (formRef: any) => {
   return new Promise<void>((resolve, reject) => {
-    unref(formRef).validate()
-      .then(({ valid }: any) => {
-        if (!valid)
-          return reject(new Error('表单验证失败，请检查输入内容。'))
+    unref(formRef).validate().then(({ valid }: any) => {
+      if (!valid)
+        return reject(new Error('表单验证失败，请检查输入内容。'))
 
-        resolve()
-      })
+      resolve()
+    })
   })
 }
 
