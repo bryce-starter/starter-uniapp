@@ -1,13 +1,13 @@
+import type { Plugin } from 'vite'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import type { Plugin } from 'vite'
-import { defineConfig, loadEnv } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import UniHelperComponents from '@uni-helper/vite-plugin-uni-components'
 import { WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
-import AutoImport from 'unplugin-auto-import/vite'
-import UnoCSS from 'unocss/vite'
 import UniHelperPages from '@uni-helper/vite-plugin-uni-pages'
+import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig, loadEnv } from 'vite'
 
 function VitePluginUniPolyfill(): Plugin {
   return {
@@ -65,14 +65,7 @@ export default defineConfig(({ mode }) => {
         ],
       }),
 
-      Uni({
-        vueOptions: {
-          script: {
-            defineModel: true,
-            propsDestructure: true,
-          },
-        },
-      }),
+      Uni(),
 
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
@@ -120,6 +113,16 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '~': resolve(__dirname, 'src'),
+      },
+    },
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions', 'global-builtin', 'import'],
+        },
       },
     },
   }

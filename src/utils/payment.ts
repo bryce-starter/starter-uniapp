@@ -1,5 +1,5 @@
-import { to, uuid } from '@bryce-loskie/utils'
 import type { IPrepayPayload } from '~/api/payment'
+import { to, uuid } from '@bryce-loskie/utils'
 import { paymentApi } from '~/api/payment'
 
 interface IMakePaymentPayload {

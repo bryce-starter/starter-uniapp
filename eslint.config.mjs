@@ -9,6 +9,7 @@ export default antfu(
       '**/src/uni_modules',
       '**/node_modules',
       '**/dist',
+      '**/pages.json',
     ],
   },
   {

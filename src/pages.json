@@ -5,7 +5,8 @@
       "type": "home",
       "style": {
         "enablePullDownRefresh": true,
-        "onReachBottomDistance": 180
+        "onReachBottomDistance": 180,
+        "type": "home"
       }
     },
     {

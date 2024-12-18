@@ -16,4 +16,5 @@
 style:
   enablePullDownRefresh: true
   onReachBottomDistance: 180
+  type: 'home'
 </route>
