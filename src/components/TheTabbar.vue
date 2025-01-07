@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRouter } from '@bryce-loskie/use/uni'
 import { isDef } from '@bryce-loskie/utils'
-import { TabEnum, activeTabRef } from '~/logic/tabbar'
+import { activeTabRef, TabEnum } from '~/logic/tabbar'
 
 uni.hideTabBar()
 
