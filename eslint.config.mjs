@@ -1,18 +1,17 @@
-import antfu from '@antfu/eslint-config'
+import uni from '@uni-helper/eslint-config'
 
-export default antfu(
+export default uni(
   {
-    vue: true,
-    formatters: true,
-    typescript: true,
-    ignores: [
-      '**/src/uni_modules',
-      '**/node_modules',
-      '**/dist',
-      '**/pages.json',
-    ],
+    unocss: true,
   },
   {
+    ignores: [
+      '**/dist',
+      '**/node_modules',
+      '**/pages.json',
+      '**/manifest.json',
+      '**/src/uni_modules',
+    ],
     rules: {
       'antfu/top-level-function': 'off',
       'no-console': 'off',

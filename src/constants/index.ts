@@ -23,7 +23,7 @@ export const themeVars: ThemeVars = {
 
 export const ThemeColor = import.meta.env.VITE_THEME_COLOR
 
-export const AppName = '水果文案库'
+export const AppName = 'UniApp Starter'
 
 export const VipInviteCount = 3
 

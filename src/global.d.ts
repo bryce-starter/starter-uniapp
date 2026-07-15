@@ -1,9 +1,7 @@
-import type { ConfigProviderThemeVars } from 'wot-design-uni'
-
 export {}
 
 declare global {
-  export type ThemeVars = ConfigProviderThemeVars
+  export type ThemeVars = Record<string, string | number | undefined>
 
   export interface IPagePayload {
     page?: number

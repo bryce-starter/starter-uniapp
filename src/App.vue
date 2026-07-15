@@ -12,7 +12,9 @@ checkForAppUpdate()
 // #endif
 </script>
 
-<style>
+<style lang="scss">
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+
 page {
   background-color: #f5f5f5;
   color: #1d2129;
@@ -21,6 +23,7 @@ page {
   line-height: 22px;
   box-sizing: border-box;
 
+  --wot-primary-6: $themeColor;
   --wot-color-theme: $themeColor;
   --wot-navbar-title-font-weight: 400;
   --wot-navbar-title-font-size: 16px;

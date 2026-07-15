@@ -1,26 +1,37 @@
+import type { ComponentResolver } from '@uni-helper/vite-plugin-uni-components'
 import type { Plugin } from 'vite'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import Uni from '@dcloudio/vite-plugin-uni'
-import UniHelperComponents from '@uni-helper/vite-plugin-uni-components'
-import { WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+import Uni from '@uni-helper/plugin-uni'
+import UniHelperComponents, { kebabCase } from '@uni-helper/vite-plugin-uni-components'
+import UniHelperLayouts from '@uni-helper/vite-plugin-uni-layouts'
 import UniHelperPages from '@uni-helper/vite-plugin-uni-pages'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { defineConfig, loadEnv } from 'vite'
+import { createLogger, defineConfig, loadEnv } from 'vite'
+import UniPolyfill from 'vite-plugin-uni-polyfill'
 
-function VitePluginUniPolyfill(): Plugin {
+const logger = createLogger()
+const loggerWarn = logger.warn
+
+logger.warn = (message, options) => {
+  if (message.includes('[unocss]') && message.includes('is being imported multiple times'))
+    return
+
+  loggerWarn(message, options)
+}
+
+function WotResolver(): ComponentResolver {
   return {
-    name: 'vite-plugin-uni-polyfill',
-    transform(code, id) {
-      if (!id.endsWith('@dcloudio/uni-mp-vue/dist/vue.runtime.esm.js'))
+    type: 'component',
+    resolve: (name: string) => {
+      if (!/^Wd[A-Z]/.test(name))
         return
-      code += `
-// polyfill for @vueuse/core
-export const render = () => {}
-export const TransitionGroup = {}
-`
-      return code
+
+      const componentName = kebabCase(name)
+      return {
+        from: `@wot-ui/ui/components/${componentName}/${componentName}.vue`,
+      }
     },
   }
 }
@@ -50,30 +61,36 @@ export default defineConfig(({ mode }) => {
         themeColor: env.VITE_THEME_COLOR,
       }),
 
-      // https://github.com/uni-helper/vite-plugin-uni-pages
+      // https://uni-helper.js.org/vite-plugin-uni-pages
       UniHelperPages({
         dts: 'src/uni-pages.d.ts',
       }),
 
-      VitePluginUniPolyfill(),
+      // https://uni-helper.js.org/vite-plugin-uni-layouts
+      UniHelperLayouts(),
 
-      // https://github.com/uni-helper/vite-plugin-uni-components
+      // https://uni-helper.js.org/vite-plugin-uni-components
       UniHelperComponents({
-        dts: 'src/components.d.ts',
+        dts: false,
+        directoryAsNamespace: true,
         resolvers: [
           WotResolver(),
         ],
       }),
 
+      // https://uni-helper.js.org/plugin-uni
       Uni(),
+
+      UniPolyfill(),
 
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         vueTemplate: true,
         imports: [
-          'pinia',
           'vue',
+          '@vueuse/core',
           'uni-app',
+          'pinia',
           {
             from: '@bryce-loskie/utils',
             imports: [
@@ -86,13 +103,6 @@ export default defineConfig(({ mode }) => {
             imports: [
               'useQuery',
               'useMutation',
-            ],
-          },
-          {
-            from: '@vueuse/core',
-            imports: [
-              'useVModel',
-              'until',
             ],
           },
         ],
@@ -121,9 +131,11 @@ export default defineConfig(({ mode }) => {
         scss: {
           api: 'modern-compiler',
           quietDeps: true,
-          silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions', 'global-builtin', 'import'],
+          silenceDeprecations: ['legacy-js-api', 'color-functions', 'global-builtin', 'import'],
         },
       },
     },
+
+    customLogger: logger,
   }
 })

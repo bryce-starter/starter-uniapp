@@ -16,6 +16,7 @@ export default defineUniPages({
     backgroundColor: '@tabBgColor',
     borderStyle: '@tabBorderStyle',
     color: '@tabFontColor',
+    custom: true,
     selectedColor: '@tabSelectedColor',
     list: [
       {
